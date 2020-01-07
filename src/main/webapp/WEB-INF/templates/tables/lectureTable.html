@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div class="table" th:unless="${#lists.isEmpty(allLectures)}" th:fragment="lectureTable">
+    <h2>Lectures:</h2>
+    <table class="table table-hover table-sm">
+        <thead class="thead-dark">
+        <tr>
+            <th th:text="#{table.id}" scope="col">Id</th>
+            <th th:text="#{table.name}" scope="col">Name</th>
+            <th th:text="#{table.date}" scope="col">Date</th>
+            <th th:text="#{table.id.classroom}" scope="col">Class Room Id</th>
+            <th th:text="#{table.id.group}" scope="col">Group Id</th>
+            <th th:text="#{table.id.teacher}" scope="col">Teacher Id</th>
+            <th th:text="#{table.id.course}" scope="col">Course Id</th>
+        </tr>
+        </thead>
+        <tr th:each="lecture : ${allLectures}">
+            <th scope="row"><span th:text="${lecture.id}"> null </span></th>
+            <td><span th:text="${lecture.name}"> null </span></td>
+            <td><span th:text="${{lecture.date}}"> null </span></td>
+            <td><span th:text="${lecture.classRoom.id}"> null </span></td>
+            <td><span th:text="${lecture.group.id}"> null </span></td>
+            <td><span th:text="${lecture.teacher.id}"> null </span></td>
+            <td><span th:text="${lecture.course.id}"> null </span></td>
+
+        </tr>
+    </table>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div class="table" th:unless="${#lists.isEmpty(allTeachers)}" th:fragment="teacherTable">
+    <h2>Teachers:</h2>
+    <table class="table table-hover table-sm">
+        <thead class="thead-dark">
+        <tr>
+            <th th:text="#{table.id}" scope="col">Id</th>
+            <th th:text="#{table.name.first}" scope="col">First Name</th>
+            <th th:text="#{table.name.last}" scope="col">Last Name</th>
+            <th th:text="#{table.id.department}" scope="col">Department Id</th>
+            <th th:text="#{table.id.course}" scope="col">Course Id</th>
+        </tr>
+        </thead>
+        <tr th:each="teacher : ${allTeachers}">
+            <th scope="row"><span th:text="${teacher.id}"> null </span></th>
+            <td><span th:text="${teacher.firstName}"> null </span></td>
+            <td><span th:text="${teacher.lastName}"> null </span></td>
+            <td><span th:text="${teacher.department.id}"> null </span></td>
+            <td><span th:text="${teacher.course.id}"> null </span></td>
+        </tr>
+    </table>
+</div>
+</body>
+
+</html>

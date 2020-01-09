@@ -1,28 +1,34 @@
 package com.foxminded.business.service;
 
-import com.foxminded.test.SpringTestConfig;
 import com.foxminded.business.dao.ExecutorQuery;
+import com.foxminded.business.exceptions.DAOException;
 import com.foxminded.business.model.Course;
 import com.foxminded.business.model.Department;
 import com.foxminded.business.model.Teacher;
-import com.foxminded.business.exceptions.DAOException;
-import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import com.foxminded.business.service.layers.CourseService;
 import com.foxminded.business.service.layers.DepartmentService;
 import com.foxminded.business.service.layers.TeacherService;
+import com.foxminded.test.SpringTestConfig;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
 
 import static com.foxminded.business.constants.Constants.NULL_WAS_PASSED;
 import static com.google.inject.internal.util.ImmutableList.of;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Vladimir Zhdanov (mailto:constHomeSpb@gmail.com)
  * @since 0.1
  */
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { SpringTestConfig.class })
 class DepartmentServiceImpTest {
     public static final String FIRST_NAME_ONE = "firstNameOne";
     public static final String FIRST_NAME_TWO = "firstNameTwo";
@@ -43,11 +49,30 @@ class DepartmentServiceImpTest {
     public Teacher teacherTwo = new Teacher(FIRST_NAME_TWO, LAST_NAME_TWO, new Course(2), new Department(2));
     public Teacher teacherThree = new Teacher(FIRST_NAME_THREE, LAST_NAME_THREE, new Course(3), new Department(2));
 
-    public ApplicationContext context = new AnnotationConfigApplicationContext(SpringTestConfig .class);
-    public DepartmentService departmentService = context.getBean(DepartmentService.class);
-    public TeacherService teacherService = context.getBean(TeacherService.class);
-    public CourseService courseService = context.getBean(CourseService.class);
-    public ExecutorQuery executorQuery = context.getBean(ExecutorQuery.class);
+    public DepartmentService departmentService;
+    public TeacherService teacherService;
+    public CourseService courseService;
+    public ExecutorQuery executorQuery;
+
+    @Autowired
+    public void setDepartmentService(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
+
+    @Autowired
+    public void setTeacherService(TeacherService teacherService) {
+        this.teacherService = teacherService;
+    }
+
+    @Autowired
+    public void setCourseService(CourseService courseService) {
+        this.courseService = courseService;
+    }
+
+    @Autowired
+    public void setExecutorQuery(ExecutorQuery executorQuery) {
+        this.executorQuery = executorQuery;
+    }
 
     @BeforeEach
     public void setUp() {

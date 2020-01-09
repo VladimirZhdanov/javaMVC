@@ -1,36 +1,32 @@
 package com.foxminded.business.service;
 
-import com.foxminded.test.SpringTestConfig;
 import com.foxminded.business.dao.ExecutorQuery;
-import com.foxminded.business.model.ClassRoom;
-import com.foxminded.business.model.Course;
-import com.foxminded.business.model.Department;
-import com.foxminded.business.model.Group;
-import com.foxminded.business.model.Lecture;
-import com.foxminded.business.model.Teacher;
 import com.foxminded.business.exceptions.DAOException;
+import com.foxminded.business.model.*;
+import com.foxminded.business.service.layers.*;
+import com.foxminded.test.SpringTestConfig;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import com.foxminded.business.service.layers.ClassRoomService;
-import com.foxminded.business.service.layers.CourseService;
-import com.foxminded.business.service.layers.DepartmentService;
-import com.foxminded.business.service.layers.GroupService;
-import com.foxminded.business.service.layers.LectureService;
-import com.foxminded.business.service.layers.TeacherService;
 
 import static com.foxminded.business.constants.Constants.NULL_WAS_PASSED;
 import static com.google.inject.internal.util.ImmutableList.of;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Vladimir Zhdanov (mailto:constHomeSpb@gmail.com)
  * @since 0.1
  */
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { SpringTestConfig.class })
 class LectureServiceImpTest {
     public static final String FIRST_NAME_ONE = "firstNameOne";
     public static final String FIRST_NAME_TWO = "firstNameTwo";
@@ -67,14 +63,48 @@ class LectureServiceImpTest {
     public ClassRoom classRoomTwo = new ClassRoom(203, TEST_NAME_TWO, 400);
     public ClassRoom classRoomThree = new ClassRoom(204, TEST_NAME_THREE, 300);
 
-    public ApplicationContext context = new AnnotationConfigApplicationContext(SpringTestConfig.class);
-    public LectureService lectureService = context.getBean(LectureService.class);
-    public ClassRoomService classRoomService = context.getBean(ClassRoomService.class);
-    public DepartmentService departmentService = context.getBean(DepartmentService.class);
-    public CourseService courseService = context.getBean(CourseService.class);
-    public GroupService groupService = context.getBean(GroupService.class);
-    public TeacherService teacherService = context.getBean(TeacherService.class);
-    public ExecutorQuery executorQuery = context.getBean(ExecutorQuery.class);
+    public LectureService lectureService;
+    public ClassRoomService classRoomService;
+    public DepartmentService departmentService;
+    public CourseService courseService;
+    public GroupService groupService;
+    public TeacherService teacherService;
+    public ExecutorQuery executorQuery;
+
+    @Autowired
+    public void setLectureService(LectureService lectureService) {
+        this.lectureService = lectureService;
+    }
+
+    @Autowired
+    public void setClassRoomService(ClassRoomService classRoomService) {
+        this.classRoomService = classRoomService;
+    }
+
+    @Autowired
+    public void setDepartmentService(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
+
+    @Autowired
+    public void setCourseService(CourseService courseService) {
+        this.courseService = courseService;
+    }
+
+    @Autowired
+    public void setGroupService(GroupService groupService) {
+        this.groupService = groupService;
+    }
+
+    @Autowired
+    public void setTeacherService(TeacherService teacherService) {
+        this.teacherService = teacherService;
+    }
+
+    @Autowired
+    public void setExecutorQuery(ExecutorQuery executorQuery) {
+        this.executorQuery = executorQuery;
+    }
 
     @BeforeEach
     public void setUp() throws DAOException {

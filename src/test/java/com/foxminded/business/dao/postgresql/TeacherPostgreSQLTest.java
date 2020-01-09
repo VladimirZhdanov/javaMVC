@@ -1,28 +1,34 @@
 package com.foxminded.business.dao.postgresql;
 
-import com.foxminded.test.SpringTestConfig;
 import com.foxminded.business.dao.ExecutorQuery;
 import com.foxminded.business.dao.layers.CourseDAO;
 import com.foxminded.business.dao.layers.DepartmentDAO;
 import com.foxminded.business.dao.layers.TeacherDAO;
+import com.foxminded.business.exceptions.DAOException;
 import com.foxminded.business.model.Course;
 import com.foxminded.business.model.Department;
 import com.foxminded.business.model.Teacher;
-import com.foxminded.business.exceptions.DAOException;
-import java.util.List;
+import com.foxminded.test.SpringTestConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
 
 import static com.foxminded.business.constants.Constants.NULL_WAS_PASSED;
 import static com.google.inject.internal.util.ImmutableList.of;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Vladimir Zhdanov (mailto:constHomeSpb@gmail.com)
  * @since 0.1
  */
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { SpringTestConfig.class })
 class TeacherPostgreSQLTest {
     public static final String FIRST_NAME_ONE = "firstNameOne";
     public static final String FIRST_NAME_TWO = "firstNameTwo";
@@ -43,11 +49,30 @@ class TeacherPostgreSQLTest {
     public Department departmentTwo = new Department(TEST_NAME_TWO);
     public Department departmentThree = new Department(TEST_NAME_THREE);
 
-    public ApplicationContext context = new AnnotationConfigApplicationContext(SpringTestConfig.class);
-    public TeacherDAO teacherDAO = context.getBean("teacherDAO", TeacherPostgreSQL.class);
-    public DepartmentDAO departmentDAO = context.getBean("departmentDAO", DepartmentPostgreSQL.class);
-    public CourseDAO courseDAO = context.getBean("courseDAO", CoursePostgreSQL.class);
-    public ExecutorQuery executorQuery = context.getBean("executorQuery", ExecutorQuery.class);
+    public TeacherDAO teacherDAO;
+    public DepartmentDAO departmentDAO;
+    public CourseDAO courseDAO;
+    public ExecutorQuery executorQuery;
+
+    @Autowired
+    public void setTeacherDAO(TeacherDAO teacherDAO) {
+        this.teacherDAO = teacherDAO;
+    }
+
+    @Autowired
+    public void setDepartmentDAO(DepartmentDAO departmentDAO) {
+        this.departmentDAO = departmentDAO;
+    }
+
+    @Autowired
+    public void setCourseDAO(CourseDAO courseDAO) {
+        this.courseDAO = courseDAO;
+    }
+
+    @Autowired
+    public void setExecutorQuery(ExecutorQuery executorQuery) {
+        this.executorQuery = executorQuery;
+    }
 
     @BeforeEach
     public void setUp() throws DAOException {

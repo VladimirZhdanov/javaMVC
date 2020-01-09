@@ -7,8 +7,10 @@ import com.foxminded.business.service.layers.ClassRoomService;
 import com.foxminded.test.SpringTestConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
@@ -21,14 +23,25 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @author Vladimir Zhdanov (mailto:constHomeSpb@gmail.com)
  * @since 0.1
  */
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { SpringTestConfig.class })
 class ClassRoomServiceImpTest {
     public static final String TEST_NAME_ONE = "testNameOne";
     public static final String TEST_NAME_TWO = "testNameTwo";
     public static final String TEST_NAME_THREE = "testNameThree";
 
-    public ApplicationContext context = new AnnotationConfigApplicationContext(SpringTestConfig.class);
-    public ClassRoomService classRoomService = context.getBean(ClassRoomService.class);
-    public ExecutorQuery executorQuery = context.getBean(ExecutorQuery.class);
+    public ClassRoomService classRoomService;
+    public ExecutorQuery executorQuery;
+
+    @Autowired
+    public void setClassRoomService(ClassRoomService classRoomService) {
+        this.classRoomService = classRoomService;
+    }
+
+    @Autowired
+    public void setExecutorQuery(ExecutorQuery executorQuery) {
+        this.executorQuery = executorQuery;
+    }
 
     @BeforeEach
     public void setUp() {

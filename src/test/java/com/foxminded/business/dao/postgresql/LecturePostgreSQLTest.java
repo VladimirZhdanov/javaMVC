@@ -7,8 +7,11 @@ import com.foxminded.business.model.*;
 import com.foxminded.test.SpringTestConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -23,6 +26,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @author Vladimir Zhdanov (mailto:constHomeSpb@gmail.com)
  * @since 0.1
  */
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { SpringTestConfig.class })
 class LecturePostgreSQLTest {
     public static final String FIRST_NAME_ONE = "firstNameOne";
     public static final String FIRST_NAME_TWO = "firstNameTwo";

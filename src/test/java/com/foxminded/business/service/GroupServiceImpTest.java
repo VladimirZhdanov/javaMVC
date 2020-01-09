@@ -1,26 +1,32 @@
 package com.foxminded.business.service;
 
-import com.foxminded.test.SpringTestConfig;
 import com.foxminded.business.dao.ExecutorQuery;
+import com.foxminded.business.exceptions.DAOException;
 import com.foxminded.business.model.Group;
 import com.foxminded.business.model.Student;
-import com.foxminded.business.exceptions.DAOException;
-import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import com.foxminded.business.service.layers.GroupService;
 import com.foxminded.business.service.layers.StudentService;
+import com.foxminded.test.SpringTestConfig;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
 
 import static com.foxminded.business.constants.Constants.NULL_WAS_PASSED;
 import static com.google.inject.internal.util.ImmutableList.of;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Vladimir Zhdanov (mailto:constHomeSpb@gmail.com)
  * @since 0.1
  */
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { SpringTestConfig.class })
 class GroupServiceImpTest {
     public static final String FIRST_NAME_ONE = "firstNameOne";
     public static final String FIRST_NAME_TWO = "firstNameTwo";
@@ -37,10 +43,24 @@ class GroupServiceImpTest {
     public Student studentTwo = new Student(FIRST_NAME_TWO, LAST_NAME_TWO, new Group(2));
     public Student studentThree = new Student(FIRST_NAME_THREE, LAST_NAME_THREE, new Group(2));
 
-    public ApplicationContext context = new AnnotationConfigApplicationContext(SpringTestConfig.class);
-    public GroupService groupService = context.getBean(GroupService.class);
-    public StudentService studentService = context.getBean(StudentService.class);
-    public ExecutorQuery executorQuery = context.getBean(ExecutorQuery.class);
+    public GroupService groupService;
+    public StudentService studentService;
+    public ExecutorQuery executorQuery;
+
+    @Autowired
+    public void setGroupService(GroupService groupService) {
+        this.groupService = groupService;
+    }
+
+    @Autowired
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    @Autowired
+    public void setExecutorQuery(ExecutorQuery executorQuery) {
+        this.executorQuery = executorQuery;
+    }
 
     @BeforeEach
     public void setUp() {

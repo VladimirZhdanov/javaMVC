@@ -1,32 +1,47 @@
 package com.foxminded.business.dao.postgresql;
 
-import com.foxminded.test.SpringTestConfig;
 import com.foxminded.business.dao.ExecutorQuery;
 import com.foxminded.business.dao.layers.DepartmentDAO;
-import com.foxminded.business.model.Department;
 import com.foxminded.business.exceptions.DAOException;
-import java.util.List;
+import com.foxminded.business.model.Department;
+import com.foxminded.test.SpringTestConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
 
 import static com.foxminded.business.constants.Constants.NULL_WAS_PASSED;
 import static com.google.inject.internal.util.ImmutableList.of;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Vladimir Zhdanov (mailto:constHomeSpb@gmail.com)
  * @since 0.1
  */
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { SpringTestConfig.class })
 class DepartmentPostgreSQLTest {
     public static final String TEST_NAME_ONE = "testNameOne";
     public static final String TEST_NAME_TWO = "testNameTwo";
     public static final String TEST_NAME_THREE = "testNameThree";
 
-    public ApplicationContext context = new AnnotationConfigApplicationContext(SpringTestConfig.class);
-    public DepartmentDAO departmentDAO = context.getBean("departmentDAO", DepartmentPostgreSQL.class);
-    public ExecutorQuery executorQuery = context.getBean("executorQuery", ExecutorQuery.class);
+    public DepartmentDAO departmentDAO;
+    public ExecutorQuery executorQuery;
+
+    @Autowired
+    public void setDepartmentDAO(DepartmentDAO departmentDAO) {
+        this.departmentDAO = departmentDAO;
+    }
+
+    @Autowired
+    public void setExecutorQuery(ExecutorQuery executorQuery) {
+        this.executorQuery = executorQuery;
+    }
 
     @BeforeEach
     public void setUp() {

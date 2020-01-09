@@ -16,19 +16,12 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @Autowired
     private ClassRoomService classRoomService;
-    @Autowired
     private CourseService courseService;
-    @Autowired
     private DepartmentService departmentService;
-    @Autowired
     private GroupService groupService;
-    @Autowired
     private LectureService lectureService;
-    @Autowired
     private StudentService studentService;
-    @Autowired
     private TeacherService teacherService;
 
     @GetMapping(value = {"/", "home"})
@@ -70,8 +63,44 @@ public class HomeController {
     public List<Teacher> getTeachers() {
         return teacherService.getAll();
     }
+
     @ModelAttribute("allStudentCourse")
     public List<StudentCourse> getAllStudentCourse() {
         return studentService.getAllStudentCourse();
+    }
+
+    @Autowired
+    public void setClassRoomService(ClassRoomService classRoomService) {
+        this.classRoomService = classRoomService;
+    }
+
+    @Autowired
+    public void setCourseService(CourseService courseService) {
+        this.courseService = courseService;
+    }
+
+    @Autowired
+    public void setDepartmentService(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
+
+    @Autowired
+    public void setGroupService(GroupService groupService) {
+        this.groupService = groupService;
+    }
+
+    @Autowired
+    public void setLectureService(LectureService lectureService) {
+        this.lectureService = lectureService;
+    }
+
+    @Autowired
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    @Autowired
+    public void setTeacherService(TeacherService teacherService) {
+        this.teacherService = teacherService;
     }
 }

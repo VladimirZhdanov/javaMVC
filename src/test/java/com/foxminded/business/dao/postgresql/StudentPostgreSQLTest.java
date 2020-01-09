@@ -12,8 +12,10 @@ import com.foxminded.business.model.StudentCourse;
 import com.foxminded.test.SpringTestConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +29,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @author Vladimir Zhdanov (mailto:constHomeSpb@gmail.com)
  * @since 0.1
  */
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { SpringTestConfig.class })
 class StudentPostgreSQLTest {
     public static final String FIRST_NAME_ONE = "firstNameOne";
     public static final String FIRST_NAME_TWO = "firstNameTwo";
@@ -47,11 +51,30 @@ class StudentPostgreSQLTest {
     public  Course courseTwo = new Course(TEST_NAME_TWO);
     public  Course courseThree = new Course(TEST_NAME_THREE);
 
-    public ApplicationContext context = new AnnotationConfigApplicationContext(SpringTestConfig.class);
-    public GroupDAO groupDAO = context.getBean("groupDAO", GroupPostgreSQL.class);
-    public StudentDAO studentDAO = context.getBean("studentDAO", StudentPostgreSQL.class);
-    public CourseDAO courseDAO = context.getBean("courseDAO", CoursePostgreSQL.class);
-    public ExecutorQuery executorQuery = context.getBean("executorQuery", ExecutorQuery.class);
+    public GroupDAO groupDAO;
+    public StudentDAO studentDAO;
+    public CourseDAO courseDAO;
+    public ExecutorQuery executorQuery;
+
+    @Autowired
+    public void setGroupDAO(GroupDAO groupDAO) {
+        this.groupDAO = groupDAO;
+    }
+
+    @Autowired
+    public void setStudentDAO(StudentDAO studentDAO) {
+        this.studentDAO = studentDAO;
+    }
+
+    @Autowired
+    public void setCourseDAO(CourseDAO courseDAO) {
+        this.courseDAO = courseDAO;
+    }
+
+    @Autowired
+    public void setExecutorQuery(ExecutorQuery executorQuery) {
+        this.executorQuery = executorQuery;
+    }
 
     @BeforeEach
     public void setUp() throws DAOException {

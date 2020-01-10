@@ -20,7 +20,7 @@ import java.util.List;
  * @since 0.1
  */
 @Component
-@Service("studentManager")
+@Service("studentService")
 public class StudentServiceImp implements StudentService {
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentServiceImp.class);
 

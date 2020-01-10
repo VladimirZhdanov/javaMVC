@@ -6,14 +6,14 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import javax.servlet.Filter;
 
+import static com.foxminded.business.constants.Constants.CHARACTER_ENCODING;
+
 /**
  * @author Vladimir Zhdanov (mailto:constHomeSpb@gmail.com)
  * @since 0.1
  */
 @Configuration
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
-    public static final String CHARACTER_ENCODING = "UTF-8";
 
     public WebAppInitializer() {
         super();

@@ -19,6 +19,8 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 import java.util.Locale;
 
+import static com.foxminded.business.constants.Constants.CHARACTER_ENCODING;
+
 /**
  * @author Vladimir Zhdanov (mailto:constHomeSpb@gmail.com)
  * @since 0.1
@@ -26,12 +28,9 @@ import java.util.Locale;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {
-        "com.foxminded.web.controllers",
-        "com.foxminded.configs"
+        "com.foxminded.web.controllers"
 })
 public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
-
-    public static final String CHARACTER_ENCODING = "UTF-8";
 
     private ApplicationContext applicationContext;
 
@@ -44,7 +43,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("WEB-INF/templates/");
+        templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCacheable(false);

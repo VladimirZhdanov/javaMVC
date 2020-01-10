@@ -21,7 +21,7 @@ import java.util.List;
  * @since 0.1
  */
 @Component
-@Service("lectureManager")
+@Service("lectureService")
 public class LectureServiceImp implements LectureService {
     private static final Logger LOGGER = LoggerFactory.getLogger(LectureServiceImp.class);
 

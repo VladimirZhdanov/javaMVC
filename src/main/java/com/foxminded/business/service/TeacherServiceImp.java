@@ -4,24 +4,25 @@ import com.foxminded.business.dao.layers.CourseDAO;
 import com.foxminded.business.dao.layers.DepartmentDAO;
 import com.foxminded.business.dao.layers.LectureDAO;
 import com.foxminded.business.dao.layers.TeacherDAO;
+import com.foxminded.business.exceptions.DAOException;
 import com.foxminded.business.model.Schedule;
 import com.foxminded.business.model.Teacher;
-import com.foxminded.business.exceptions.DAOException;
-import java.util.List;
+import com.foxminded.business.service.layers.TeacherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.foxminded.business.service.layers.TeacherService;
+
+import java.util.List;
 
 /**
  * @author Vladimir Zhdanov (mailto:constHomeSpb@gmail.com)
  * @since 0.1
  */
 @Component
-@Service("teacherManager")
+@Service("teacherService")
 public class TeacherServiceImp implements TeacherService {
     private static final Logger LOGGER = LoggerFactory.getLogger(TeacherServiceImp.class);
 

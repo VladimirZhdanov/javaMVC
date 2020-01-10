@@ -20,7 +20,7 @@ import java.util.List;
  * @since 0.1
  */
 @Component
-@Service("groupManager")
+@Service("groupService")
 public class GroupServiceImp implements GroupService {
     private static final Logger LOGGER = LoggerFactory.getLogger(GroupServiceImp.class);
 

@@ -18,7 +18,7 @@ import java.util.List;
  * @since 0.1
  */
 @Component
-@Service("classRoomManager")
+@Service("classRoomService")
 public class ClassRoomServiceImp implements ClassRoomService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ClassRoomServiceImp.class);
 

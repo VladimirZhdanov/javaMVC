@@ -1,10 +1,10 @@
 package com.foxminded.configs;
 
-import com.foxminded.business.dao.ExecutorQuery;
-import com.foxminded.business.dao.layers.*;
-import com.foxminded.business.dao.postgresql.*;
-import com.foxminded.business.service.*;
-import com.foxminded.business.service.layers.*;
+import com.foxminded.dao.ExecutorQuery;
+import com.foxminded.dao.layers.*;
+import com.foxminded.dao.postgresql.*;
+import com.foxminded.service.*;
+import com.foxminded.service.layers.*;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

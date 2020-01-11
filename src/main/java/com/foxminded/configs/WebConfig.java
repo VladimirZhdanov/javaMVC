@@ -19,7 +19,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 import java.util.Locale;
 
-import static com.foxminded.business.constants.Constants.CHARACTER_ENCODING;
+import static com.foxminded.constants.Constants.CHARACTER_ENCODING;
 
 /**
  * @author Vladimir Zhdanov (mailto:constHomeSpb@gmail.com)

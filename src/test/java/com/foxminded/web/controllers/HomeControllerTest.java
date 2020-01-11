@@ -1,9 +1,9 @@
 package com.foxminded.web.controllers;
 
-import com.foxminded.business.model.ClassRoom;
-import com.foxminded.business.service.layers.ClassRoomService;
 import com.foxminded.configs.WebConfig;
-import com.foxminded.test.WebTestConfig;
+import com.foxminded.configs.WebTestConfig;
+import com.foxminded.model.ClassRoom;
+import com.foxminded.service.layers.ClassRoomService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -62,8 +62,7 @@ class HomeControllerTest {
     public void shouldReturnCorrectedStartPageWhenGetStartPage() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("home"))
-                .andExpect(forwardedUrl("/WEB-INF/templates/home.html"));
+                .andExpect(view().name("home"));
     }
 
     @Test

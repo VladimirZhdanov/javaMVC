@@ -128,8 +128,8 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>3.0.0</version>
-            <scope>test</scope>
+            <version>3.1.0</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -236,12 +236,6 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-java8time</artifactId>
             <version>${org.thymeleaf.extras-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.1.0</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

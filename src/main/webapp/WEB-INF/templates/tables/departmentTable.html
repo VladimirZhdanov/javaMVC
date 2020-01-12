@@ -4,7 +4,7 @@
 <!--/*@thymesVar id="dep" type="com.foxminded.model.Department"*/-->
 
 <body>
-<div class="table" th:unless="${#lists.isEmpty(allDepartments)}" th:fragment="departmentTable">
+<div class="table" th:unless="${#lists.isEmpty(departments)}" th:fragment="departmentTable">
     <h2>Departments:</h2>
     <table class="table table-hover table-sm">
         <thead class="thead-dark">
@@ -14,7 +14,7 @@
         </tr>
         </thead>
 
-        <tr th:each="dep : ${allDepartments}">
+        <tr th:each="dep : ${departments}">
             <th scope="row"><span th:text="${dep.id}"> null </span></th>
             <td><span th:text="${dep.name}"> null </span></td>
         </tr>

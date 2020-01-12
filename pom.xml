@@ -168,6 +168,13 @@
             <version>${slf4j.version}</version>
         </dependency>
 
+        <!-- hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.1.0.Final</version>
+        </dependency>
+
         <!-- springframework -->
         <dependency>
             <groupId>org.springframework</groupId>

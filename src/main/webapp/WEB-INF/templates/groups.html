@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<!--/*@thymesVar id="group" type="com.foxminded.model.Group"*/-->
+<head>
+    <title>Groups</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/style.css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div th:replace="components/img :: img"> img </div>
+
+<div th:replace="components/navi :: navi"> Navigation </div>
+
+<div th:replace="tables/groupTable :: groupTable">  </div>
+
+<div class="row">
+    <div class="col-4">
+        <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="add-group-list" data-toggle="list" href="#add-group" role="tab" aria-controls="home">Add</a>
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#find-group" role="tab" aria-controls="profile">Find</a>
+            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#update-group" role="tab" aria-controls="messages">Update</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#delete-group" role="tab" aria-controls="settings">Delete</a>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="add-group" role="tabpanel" aria-labelledby="add-group-list">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Enter name">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="find-group" role="tabpanel" aria-labelledby="list-profile-list">//TODO</div>
+            <div class="tab-pane fade" id="update-group" role="tabpanel" aria-labelledby="list-messages-list">//TODO</div>
+            <div class="tab-pane fade" id="delete-group" role="tabpanel" aria-labelledby="list-settings-list">//TODO</div>
+        </div>
+    </div>
+</div>
+
+<br>
+<div th:replace="components/footer :: copy"> &copy; 2019 Vladimir Zhdanov. </div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

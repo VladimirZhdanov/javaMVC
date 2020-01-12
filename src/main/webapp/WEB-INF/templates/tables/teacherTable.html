@@ -3,7 +3,7 @@
 
 <body>
 
-<div class="table" th:unless="${#lists.isEmpty(allTeachers)}" th:fragment="teacherTable">
+<div class="table" th:unless="${#lists.isEmpty(teachers)}" th:fragment="teacherTable">
     <h2>Teachers:</h2>
     <table class="table table-hover table-sm">
         <thead class="thead-dark">
@@ -15,7 +15,7 @@
             <th th:text="#{table.id.course}" scope="col">Course Id</th>
         </tr>
         </thead>
-        <tr th:each="teacher : ${allTeachers}">
+        <tr th:each="teacher : ${teachers}">
             <th scope="row"><span th:text="${teacher.id}"> null </span></th>
             <td><span th:text="${teacher.firstName}"> null </span></td>
             <td><span th:text="${teacher.lastName}"> null </span></td>

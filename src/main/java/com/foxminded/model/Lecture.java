@@ -64,6 +64,16 @@ public class Lecture {
         this.course = course;
     }
 
+    public Lecture(int id, String name, LocalDateTime date, Teacher teacher, ClassRoom classRoom, Group group, Course course) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.teacher = teacher;
+        this.group = group;
+        this.classRoom = classRoom;
+        this.course = course;
+    }
+
     public int getId() {
         return id;
     }

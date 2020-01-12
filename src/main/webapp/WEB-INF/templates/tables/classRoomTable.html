@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="room" type="com.foxminded.model.ClassRoom"*/-->
 
 <body>
 
@@ -14,8 +15,6 @@
       <th th:text="#{table.capasity}" scope="col">Capacity</th>
     </tr>
     </thead>
-      <!--/*@thymesVar id="room" type="com.foxminded.model.ClassRoom"*/-->
-      <!--/*@thymesVar id="allClassRooms" type="com.foxminded.model.ClassRoom"*/-->
     <tr th:each="room : ${allClassRooms}">
       <th scope="row"><span th:text="${room.id}"> null </span></th>
       <td><span th:text="${room.name}"> null </span></td>

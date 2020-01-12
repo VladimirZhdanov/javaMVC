@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="course" type="com.foxminded.model.Course"*/-->
 
 <body>
 <div class="table" th:unless="${#lists.isEmpty(allCourses)}" th:fragment="courseTable">

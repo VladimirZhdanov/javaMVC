@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="lecture" type="com.foxminded.model.Lecture"*/-->
 
 <body>
 
@@ -18,6 +19,7 @@
             <th th:text="#{table.id.course}" scope="col">Course Id</th>
         </tr>
         </thead>
+
         <tr th:each="lecture : ${allLectures}">
             <th scope="row"><span th:text="${lecture.id}"> null </span></th>
             <td><span th:text="${lecture.name}"> null </span></td>

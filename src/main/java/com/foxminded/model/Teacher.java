@@ -46,6 +46,14 @@ public class Teacher {
         this.department = department;
     }
 
+    public Teacher(int id, String firstName, String lastName, Course course, Department department) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.course = course;
+        this.department = department;
+    }
+
     public int getId() {
         return id;
     }

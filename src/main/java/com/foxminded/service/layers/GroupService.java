@@ -21,6 +21,15 @@ public interface GroupService {
     Group getById(int id) throws DAOException;
 
     /**
+     * Gets group by name.
+     *
+     * @param name - name
+     * @return - Course
+     * @throws DAOException - DAOException
+     */
+    Group getByName(String name) throws DAOException;
+
+    /**
      * Gets all groups.
      *
      * @return - List<Group>

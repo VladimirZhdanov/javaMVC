@@ -32,6 +32,13 @@ div.table > table > tbody > tr > td, div.table > table > thead > tr > th {
   border-left: 1px dotted #000000;
 }
 
+.fieldError {
+  color: red;
+}
+
+.col-8 {
+  height: 250px;
+}
 
 
 

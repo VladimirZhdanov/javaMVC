@@ -1,5 +1,7 @@
 package com.foxminded.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -11,8 +13,14 @@ import java.util.Objects;
  * @since 0.1
  */
 public class Group {
+
     private int id;
+
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
+    //@DAOException
     private String name;
+
     private List<Student> students;
 
     public Group() {

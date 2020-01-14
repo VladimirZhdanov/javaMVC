@@ -81,19 +81,19 @@ class ClassRoomControllerTest {
         mockMvc.perform(get("/classRooms"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("classRooms", hasSize(2)))
-        .andExpect(model().attribute("classRooms", hasItem(
-                allOf(
-                        hasProperty("id", is(202)),
-                        hasProperty("name", is(TEST_NAME_ONE)),
-                        hasProperty("capacity", is(200)
-                )
-        ))))
-        .andExpect(model().attribute("classRooms", hasItem(
-                allOf(
-                        hasProperty("id", is(203)),
-                        hasProperty("name", is(TEST_NAME_TWO)),
-                        hasProperty("capacity", is(400)
-                        )))));
+                .andExpect(model().attribute("classRooms", hasItem(
+                        allOf(
+                                hasProperty("id", is(202)),
+                                hasProperty("name", is(TEST_NAME_ONE)),
+                                hasProperty("capacity", is(200)
+                                )
+                        ))))
+                .andExpect(model().attribute("classRooms", hasItem(
+                        allOf(
+                                hasProperty("id", is(203)),
+                                hasProperty("name", is(TEST_NAME_TWO)),
+                                hasProperty("capacity", is(400)
+                                )))));
         verify(classRoomServiceMock, times(1)).getAll();
         verifyNoMoreInteractions(classRoomServiceMock);
     }

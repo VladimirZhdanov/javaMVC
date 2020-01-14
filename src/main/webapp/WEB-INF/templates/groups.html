@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
 <!--/*@thymesVar id="group" type="com.foxminded.model.Group"*/-->
+<!--/*@thymesVar id="foundGroup" type="com.foxminded.model.Group"*/-->
+<!--/*@thymesVar id="newGroup" type="com.foxminded.model.Group"*/-->
 <head>
     <title>Groups</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -11,8 +13,8 @@
 <div th:replace="components/img :: img"> img </div>
 
 <div th:replace="components/navi :: navi"> Navigation </div>
-
-<div th:replace="tables/groupTable :: groupTable">  </div>
+<br>
+<br>
 
 <div class="row">
     <div class="col-4">
@@ -26,20 +28,58 @@
     <div class="col-8">
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="add-group" role="tabpanel" aria-labelledby="add-group-list">
-                <form>
+                <form action="#" th:action="@{createGroup}" th:object="${group}" method="post">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Enter name">
+                        <label for="create">Name</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="create" aria-describedby="name" placeholder="Enter name" th:errorclass="fieldError">
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
-            <div class="tab-pane fade" id="find-group" role="tabpanel" aria-labelledby="list-profile-list">//TODO</div>
-            <div class="tab-pane fade" id="update-group" role="tabpanel" aria-labelledby="list-messages-list">//TODO</div>
-            <div class="tab-pane fade" id="delete-group" role="tabpanel" aria-labelledby="list-settings-list">//TODO</div>
+            <div class="tab-pane fade" id="find-group" role="tabpanel" aria-labelledby="list-profile-list">
+                <form action="#" th:action="@{findGroup}" th:object="${group}" method="get">
+                    <div class="form-group">
+                        <label for="find">Name</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="find" aria-describedby="name" placeholder="Enter name" th:errorclass="fieldError">
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="update-group" role="tabpanel" aria-labelledby="list-messages-list">
+                <form action="#" th:action="@{updateGroup}" th:object="${group}" method="post">
+                    <div class="form-group">
+                        <label for="oldName">Old name</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="oldName" aria-describedby="old name" placeholder="Enter old name" th:errorclass="fieldError">
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="newName">New name</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="newName" aria-describedby="new name" placeholder="Enter new name" th:errorclass="fieldError">
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="delete-group" role="tabpanel" aria-labelledby="list-settings-list">
+                <form action="#" th:action="@{deleteGroup}" th:object="${group}" method="post">
+                    <div class="form-group">
+                        <label for="delete">Name</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="delete" aria-describedby="name" placeholder="Enter name" th:errorclass="fieldError">
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+<br>
+<div class="table" th:unless="${foundGroup == null}" th:fragment="groupTable">
+    <h3>Group id: <span th:text="${foundGroup.id}"></span>, name: <span th:text="${foundGroup.name}"></span> </h3>
+</div>
+<div th:replace="tables/groupTable :: groupTable">  </div>
 
 <br>
 <div th:replace="components/footer :: copy"> &copy; 2019 Vladimir Zhdanov. </div>

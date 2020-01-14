@@ -47,6 +47,18 @@ public class GroupServiceImp implements GroupService {
     }
 
     /**
+     * Gets group by name.
+     *
+     * @param name - name
+     * @return - Course
+     * @throws DAOException - DAOException
+     */
+    @Override
+    public Group getByName(String name) throws DAOException {
+        return groupDAO.getByName(name);
+    }
+
+    /**
      * Gets all groups.
      *
      * @return - List<Group>

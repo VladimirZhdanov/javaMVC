@@ -1,5 +1,6 @@
-Task 14 - User Interface-1
+Task 14L
 
-Create status pages (read data from DB - show it in HTML). 
+Creat application for university. Domain pattern should be used.
+Spring MVC + Thymeleaf + bootstrap + spring jdbc.
 
-Use Spring MVC and Thymeleaf, Bootstrap. 
+Not ready yeat. Soon i will add hibernate to the project insted of spring jdbc.

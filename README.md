@@ -1,4 +1,4 @@
-Task 14L
+Task 14:
 
 Creat application for university. Domain pattern should be used.
 Spring MVC + Thymeleaf + bootstrap + spring jdbc.
